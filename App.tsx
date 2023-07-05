@@ -1,10 +1,11 @@
-import { ActivityIndicator } from 'react-native';
+import { StatusBar } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
 import { useFonts, Roboto_400Regular, Roboto_700Bold} from '@expo-google-fonts/roboto';
 
 import theme from './src/theme'
 
 import { Groups } from '@screens/Groups';
+import {Loading} from '@components/Loading';
 
 export default function App() {
   const [fontsLoaded] = useFonts({Roboto_400Regular, Roboto_700Bold})
@@ -16,7 +17,12 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {fontsLoaded ? <Groups/> : <ActivityIndicator/>}
+      <StatusBar
+        barStyle="light-content" // Cor dos ícones da barra de status
+        backgroundColor="transparent" // Quando aplico barStyle, ele aplica um backgorund preto, então por isso coloco aqui o background transparent
+        translucent // Com o transluci minha interface que começa baixo da barra de status, a partir de começa no TOPO da tela
+      />
+      {fontsLoaded ? <Groups/> : <Loading/>}
     </ThemeProvider>  
   );
 }
