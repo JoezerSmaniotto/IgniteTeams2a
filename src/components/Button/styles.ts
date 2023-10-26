@@ -1,6 +1,6 @@
 
 import { TouchableOpacity } from "react-native";
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 
 export type ButtonTypeStyleProps = 'PRIMARY' | 'SECONDARY';
 
@@ -22,8 +22,18 @@ export const Container = styled(TouchableOpacity) <Props>`
   align-items: center;
 `;
 
+// export const Title = styled.Text`
+//   font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+//   color: ${({ theme }) => theme.COLORS.WHITE};
+//   font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+// `;
+/* No caso acima eu useu 3 x o "theme", usando o helper "css" do Styled 
+  posso resolver chamando apenas uma vez o "theme" 
+*/
 export const Title = styled.Text`
-  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
-  color: ${({ theme }) => theme.COLORS.WHITE};
-  
+  ${({ theme }) => css`
+    font-size: ${theme.FONT_SIZE.MD}px;
+    color: ${theme.COLORS.WHITE};
+    font-family: ${theme.FONT_FAMILY.BOLD};
+  `};
 `;
