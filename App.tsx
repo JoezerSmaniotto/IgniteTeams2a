@@ -4,10 +4,9 @@ import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/
 
 import theme from './src/theme'
 
-import { Groups } from '@screens/Groups';
-import { NewGroup } from '@screens/NewGroup';
-import { Players } from '@screens/Players';
 import { Loading } from '@components/Loading';
+import { Routes } from './src/routes';
+
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold })
@@ -24,7 +23,7 @@ export default function App() {
         backgroundColor="transparent" // Quando aplico barStyle, ele aplica um backgorund preto, então por isso coloco aqui o background transparent
         translucent // Com o transluci minha interface que começa baixo da barra de status, a partir de começa no TOPO da tela
       />
-      {fontsLoaded ? <Players /> : <Loading />}
+      {fontsLoaded ? <Routes /> : <Loading />}
     </ThemeProvider>
   );
 }

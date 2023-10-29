@@ -26,7 +26,7 @@ export function Players() {
       <Form>
         <Input
           placeholder="Nome da pessoa"
-          autoCorrect={false}
+          autoCorrect={false} // Desabilita a autocorreção do que foi escrito.
         />
         <ButtonIcon icon="add" />
       </Form>
