@@ -1,8 +1,12 @@
+import { SafeAreaView } from 'react-native-safe-area-context';
 import styled, { css } from "styled-components/native";
 import { MaterialIcons } from "@expo/vector-icons";
 
-
-export const Container = styled.View`
+// Colocamos  styled(SafeAreaView) entre () pq estamos
+// Estilizando um elemento que não é default, dentro do
+// styled-components que estamos usando, note que o elementos
+// SafeAreaView vem de react-native-safe-area-context
+export const Container = styled(SafeAreaView)`
   width: 100%;
   height: 56px;
 
