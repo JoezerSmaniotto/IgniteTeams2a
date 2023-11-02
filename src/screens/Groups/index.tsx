@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { FlatList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import { Header } from '@components/Header';
 import { Highlight } from '@components/Highlight';
@@ -9,6 +9,7 @@ import { ListEmpty } from '@components/ListEmpty';
 import { Button } from '@components/Button';
 
 import { Container } from './styles';
+import { groupsGetAll } from '@storage/group/groupsGetAll';
 
 export function Groups() {
 
@@ -19,6 +20,30 @@ export function Groups() {
   function handleNewGroups() {
     navigation.navigate('new');
   }
+
+  async function fetchGroups() {
+    try {
+      const data = await groupsGetAll();
+      setGroups(data);
+
+    } catch (error) {
+      console.log("fetchGroups_error: ", error);
+    }
+
+  }
+
+  function handleOpenGroup(group: string) {
+    navigation.navigate('players', { group });
+  }
+
+  //useFocusEffect é usado para executar um efeito quando a tela está em foco
+  // SEMPRE USAR useCallback para evitar renderizações desnecessárias.
+  useFocusEffect(
+    useCallback(() => {
+      fetchGroups();
+    }, [])
+  );
+
   return (
     <Container>
       <Header />
@@ -33,6 +58,7 @@ export function Groups() {
         renderItem={({ item }) => (
           <GroupCard
             title={item}
+            onPress={() => handleOpenGroup(item)}
           />
         )}
         contentContainerStyle={groups.length === 0 && { flex: 1 }}
