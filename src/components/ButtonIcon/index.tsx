@@ -15,7 +15,7 @@ export function ButtonIcon({ icon, type = 'PRIMARY', ...rest }: Props) {
     <Container {...rest} >
       <Icon
         name={icon}
-        type='SECONDARY'
+        type={type}
       />
     </Container>
   );
