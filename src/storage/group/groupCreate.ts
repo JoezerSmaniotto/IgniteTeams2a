@@ -5,7 +5,7 @@ import { GROUP_COLLECTION } from "@storage/storageConfig";
 import { groupsGetAll } from "./groupsGetAll";
 
 export async function groupCreate(NewGroup: string) {
-  const groups = await AsyncStorage.getItem("groups");
+
   try {
     // Pega todos os groups
     const storedGroup = await groupsGetAll();
@@ -13,7 +13,7 @@ export async function groupCreate(NewGroup: string) {
     const groupAlreadyExists = storedGroup.includes(NewGroup);
 
     if (groupAlreadyExists) {
-      throw new AppError("Já existe um grupo cadastrado com esse nome");
+      throw new AppError("Já existe uma turma cadastrado com esse nome");
     }
 
     // Convert merge de todos os groups com o novo group(NewGroup)
